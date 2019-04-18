@@ -67,4 +67,6 @@ accuracy = accuracy_score(y_test, predictions)
 print("Accuracy: %.2f%%" % (accuracy * 100.0))
 ```
 
+The answer should be 77.95%
+
 Reference: https://machinelearningmastery.com/develop-first-xgboost-model-python-scikit-learn/
