@@ -18,3 +18,53 @@ Reference: https://www.youtube.com/watch?v=LsK-xG1cLYA
 The weak learners are typically not decision stumps in this case, nor are they fully grown decision trees. In the simplest case, Gradient Boosting is a machine learning regressor based on iteratively correcting the residuals of the previous tree. At first the average of all labels is guessed as the initial solution. The residual differences with the ground truth labels are calculated, and a new regression tree is generated, where leaves corresponding to multiple labels take on the average value. The result of the trees is multiplied with a learning rate (0-1), and more trees are grown to iteratively improve the residuals.
 
 Reference: https://www.youtube.com/watch?v=3CC4N4z3GJc
+
+### XGBoost
+A scalable version of gradient boosting that speeds up the learning process ten-fold with a fast approximation for finding the best tree split, among other parallelized implementations.
+
+#### Install XGBoost
+```bash
+pip install xgboost
+```
+or
+```bash
+conda install -c conda-forge xgboost
+```
+
+#### Download diabetes dataset
+https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv
+
+#### Training example
+```python
+# Import modules
+from numpy import loadtxt
+from xgboost import XGBClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load data
+dataset = loadtxt('pima-indians-diabetes.csv', delimiter=",")
+
+# Split data into X and y
+X = dataset[:,0:8]
+Y = dataset[:,8]
+
+# Split data into train and test sets
+seed = 7
+test_size = 0.33
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=test_size, random_state=seed)
+
+# Fit model
+model = XGBClassifier()
+model.fit(X_train, y_train)
+
+# Make predictions for test data
+y_pred = model.predict(X_test)
+predictions = [round(value) for value in y_pred]
+
+# Evaluate performance
+accuracy = accuracy_score(y_test, predictions)
+print("Accuracy: %.2f%%" % (accuracy * 100.0))
+```
+
+Reference: https://machinelearningmastery.com/develop-first-xgboost-model-python-scikit-learn/
