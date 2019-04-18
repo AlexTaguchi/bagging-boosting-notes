@@ -19,7 +19,7 @@ The weak learners are typically not decision stumps in this case, nor are they f
 
 Reference: https://www.youtube.com/watch?v=3CC4N4z3GJc
 
-### XGBoost
+### XGBoost (Extreme Gradient Boosting)
 A scalable version of gradient boosting that speeds up the learning process ten-fold with a fast approximation for finding the best tree split, among other parallelized implementations.
 
 #### Install XGBoost
